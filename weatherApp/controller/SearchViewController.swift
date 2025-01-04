@@ -12,7 +12,7 @@ class SearchViewController: UIViewController{
     @IBOutlet weak var ResultLabel: UILabel!
     @IBOutlet weak var NavigateBTN: UIButton!
     @IBOutlet weak var LoadingSpinner: UIActivityIndicatorView!
-    var locationManager = CLLocationManager()
+    let locationManager = CLLocationManager()
     
     
     override func viewDidLoad(){
@@ -26,7 +26,6 @@ class SearchViewController: UIViewController{
     }
     
 
-        
     private func clearResults() {
         LoadingSpinner.isHidden = true
         ResultLabel.text = "Enter a city name to see the weather details"
@@ -226,7 +225,7 @@ extension SearchViewController:CLLocationManagerDelegate{
                 if let error = error {
                     print("Error fetching data: \(error)")
                     DispatchQueue.main.async {
-                        self.showErrorAlert(error)
+                        self.showErrorAlert(error.localizedDescription)
                     }
                     return
                 }
@@ -254,7 +253,7 @@ extension SearchViewController:CLLocationManagerDelegate{
                 }catch{
                     print("An error occurred! \(error)")
                     DispatchQueue.main.async{
-                        self.showErrorAlert(error)
+                        self.showErrorAlert(error.localizedDescription)
                     }
                 }
                 
@@ -264,13 +263,13 @@ extension SearchViewController:CLLocationManagerDelegate{
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
-        print("An error occurred")
-        showErrorAlert(error)
+        print("An error occurred \(error.localizedDescription)")
+        showErrorAlert(error.localizedDescription)
     }
     
     
 
-    func showErrorAlert(_ error: Error? = nil){
+    func showErrorAlert(_ error: String? = nil){
         let message = error != nil ? "An error occurred! \(error!)" : "An unknown error occurred."
         
         let alert = UIAlertController(title: "Error occurred",
