@@ -5,9 +5,6 @@
 //  Created by Atuoha on 30/12/2024.
 //
 
-API_KEY = "802468cad7e27df51fc25f10671672fc"
-// BASE_URL = "https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}"
+API_KEY = ""
 
-
-// data/2.5/forecast/q={city name}&appid={API key}
 
