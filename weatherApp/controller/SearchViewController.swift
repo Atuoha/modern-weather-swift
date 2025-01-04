@@ -209,6 +209,10 @@ extension SearchViewController:CLLocationManagerDelegate{
         
         if let coordinate  = manager.location?.coordinate{
             
+            // You can also decide to just retrieve the weather details directly making use of the coordinates:
+            // let urlString = "\(AppStrings.BASE_URL)data/2.5/forecast?lon=\(coordinate.longitude)&lat=\(coordintate.latitude)&appid=\(AppStrings.API_KEY)"
+            // but you will have to change the details of the encoding so you don't use CityLocation but Weather and can decide to modify the searchWeather FUNC to accommodate both city name and coordinates respectively
+            
             let urlString = "\(AppStrings.BASE_URL)geo/1.0/reverse?lat=\(coordinate.latitude)&lon=\(coordinate.longitude)&limit=5&appid=\(AppStrings.API_KEY)"
             
             print("URL: \(urlString)")
